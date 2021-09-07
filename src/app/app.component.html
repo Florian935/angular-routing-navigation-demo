@@ -1,2 +1,14 @@
-<h1>Angular Router</h1>
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <h1 class="title">Angular Router</h1>
+    <nav>
+        <a routerLink="/users" routerLinkActive="active">Users Center</a>
+        <a routerLink="/skills" routerLinkActive="active">Skills</a>
+        <a routerLink="/admin" routerLinkActive="active">Admin</a>
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
+    </nav>
+    <div [@routeAnimation]="getAnimationData(routerOutlet)">
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+    </div>
+    <router-outlet name="popup"></router-outlet>
+</div>
