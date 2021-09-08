@@ -4,10 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComposeMessageComponent } from './pages/popup/compose-message.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SkillsModule } from './pages/skills/skills.module';
 
 @NgModule({
     declarations: [AppComponent, ComposeMessageComponent],
-    imports: [BrowserModule, FormsModule, AppRoutingModule],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        SkillsModule,
+        AppRoutingModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })

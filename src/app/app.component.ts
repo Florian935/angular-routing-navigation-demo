@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
 import { slideInAnimation } from './animation';
 
 @Component({

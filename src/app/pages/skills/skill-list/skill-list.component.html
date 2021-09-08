@@ -1,0 +1,14 @@
+<h2>Skills</h2>
+<ul class="skills">
+    <li
+        *ngFor="let skill of skills$ | async"
+        [class.selected]="skill.id === selectedId"
+    >
+        <a [routerLink]="['/skill', skill.id]">
+            <span class="badge">{{ skill.id }}</span
+            >{{ skill.name }}
+        </a>
+    </li>
+</ul>
+
+<button routerLink="/sidekicks">Go to sidekicks</button>

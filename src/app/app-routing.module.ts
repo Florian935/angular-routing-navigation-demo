@@ -16,7 +16,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: 'users',
+        redirectTo: 'skills',
         pathMatch: 'full',
     },
     {

@@ -20,7 +20,7 @@ export class UserService {
 
     getUserById(id: number | string): Observable<User> {
         return this.getUsers().pipe(
-            map((users) => users.find((user) => user.id === +id)!)
+            map((users: Array<User>) => users.find((user) => user.id === +id)!)
         );
     }
 }
