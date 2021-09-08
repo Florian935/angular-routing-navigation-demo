@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { SelectivePreloadingStrategyService } from './guards/selective-preloading-strategy.service';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ComposeMessageComponent } from './pages/popup/compose-message.component';
+
+const routerOptions: ExtraOptions = {
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    scrollOffset: [0, 32],
+    preloadingStrategy: SelectivePreloadingStrategyService,
+};
 
 const routes: Routes = [
     {
@@ -24,6 +31,14 @@ const routes: Routes = [
         data: { preload: true, loadAfterSeconds: 5 },
     },
     {
+        path: 'greeting',
+        loadChildren: () =>
+            import('./pages/greeting/greeting.module').then(
+                (m) => m.GreetingModule
+            ),
+        data: { preload: true, loadAfterSeconds: 2 },
+    },
+    {
         path: '',
         redirectTo: 'skills',
         pathMatch: 'full',
@@ -35,11 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes, {
-            preloadingStrategy: SelectivePreloadingStrategyService,
-        }),
-    ],
+    imports: [RouterModule.forRoot(routes, routerOptions)],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
