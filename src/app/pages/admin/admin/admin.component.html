@@ -1,0 +1,12 @@
+<h2>Admin</h2>
+<nav>
+    <a
+        routerLink="./"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Dashboard</a
+    >
+    <a routerLink="./users" routerLinkActive="active">Manage Users</a>
+    <a routerLink="./skills" routerLinkActive="active">Manage Skills</a>
+</nav>
+<router-outlet></router-outlet>

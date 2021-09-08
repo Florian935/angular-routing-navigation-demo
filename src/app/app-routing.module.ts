@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ComposeMessageComponent } from './pages/popup/compose-message.component';
 
@@ -8,6 +9,12 @@ const routes: Routes = [
         path: 'compose',
         component: ComposeMessageComponent,
         outlet: 'popup',
+    },
+    {
+        path: 'admin',
+        loadChildren: () =>
+            import('./pages/admin/admin.module').then((m) => m.AdminModule),
+        canLoad: [AuthGuard],
     },
     {
         path: 'users',

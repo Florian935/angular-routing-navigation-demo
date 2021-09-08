@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ComposeMessageComponent } from './pages/popup/compose-message.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SkillsModule } from './pages/skills/skills.module';
+import { AuthModule } from './pages/auth/auth.module';
 
 @NgModule({
     declarations: [AppComponent, ComposeMessageComponent],
@@ -14,6 +15,7 @@ import { SkillsModule } from './pages/skills/skills.module';
         BrowserAnimationsModule,
         FormsModule,
         SkillsModule,
+        AuthModule,
         AppRoutingModule,
     ],
     providers: [],
