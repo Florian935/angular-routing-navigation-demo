@@ -36,6 +36,7 @@ export class SkillDetailComponent implements OnInit {
         const skillId = skill ? skill.id : null;
         const navigationExtras: NavigationExtras = {
             queryParams: { selected_id: skillId },
+            state: { selectedId: skillId },
         };
         this._router.navigate(['/skills'], navigationExtras);
     }

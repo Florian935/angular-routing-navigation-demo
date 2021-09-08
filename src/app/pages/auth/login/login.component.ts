@@ -25,7 +25,7 @@ export class LoginComponent {
             this.message = this.getMessage();
 
             if (this.authService.isLoggedIn) {
-                const redirectUrl = this.authService.redirectUrl;
+                const redirectUrl = this.authService.redirectUrl || '/admin';
                 const navigationExtras: NavigationExtras = {
                     queryParamsHandling: 'preserve',
                     preserveFragment: true,

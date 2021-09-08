@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { SkillService } from '../services/skill.service';
@@ -16,8 +16,16 @@ export class SkillListComponent implements OnInit {
 
     constructor(
         private _skillService: SkillService,
-        private _activatedRoute: ActivatedRoute
-    ) {}
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router
+    ) {
+        // We can also retrieved the selectedId from the router state
+        if (this._router.getCurrentNavigation()?.extras.state) {
+            console.log(
+                this._router.getCurrentNavigation()?.extras.state!.selectedId
+            );
+        }
+    }
 
     ngOnInit(): void {
         this.skills$ = this._activatedRoute.queryParamMap.pipe(
