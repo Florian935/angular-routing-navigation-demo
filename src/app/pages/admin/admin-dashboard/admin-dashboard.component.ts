@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {
+    ActivatedRoute,
+    NavigationExtras,
+    ParamMap,
+    Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectivePreloadingStrategyService } from 'src/app/guards/selective-preloading-strategy.service';
@@ -16,7 +21,8 @@ export class AdminDashboardComponent implements OnInit {
 
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _preloadStrategy: SelectivePreloadingStrategyService
+        private _preloadStrategy: SelectivePreloadingStrategyService,
+        private _router: Router
     ) {
         this.modules = this._preloadStrategy.preloadedModules;
     }
@@ -27,9 +33,19 @@ export class AdminDashboardComponent implements OnInit {
                 return params.get('session_id') || 'None';
             })
         );
+    }
 
-        this.token$ = this._activatedRoute.fragment.pipe(
-            map((fragment: string | null) => fragment || 'None')
-        );
+    goToGreetingCenter(fragment?: string): void {
+        const greetingPath = '/greeting';
+
+        if (!fragment) {
+            this._router.navigate([greetingPath]);
+        }
+
+        const navigationExtras: NavigationExtras = {
+            fragment,
+        };
+
+        this._router.navigate([greetingPath], navigationExtras);
     }
 }
