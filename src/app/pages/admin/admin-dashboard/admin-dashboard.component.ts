@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SelectivePreloadingStrategyService } from 'src/app/guards/selective-preloading-strategy.service';
 
 @Component({
     selector: 'app-admin-dashboard',
@@ -13,7 +14,12 @@ export class AdminDashboardComponent implements OnInit {
     token$!: Observable<string>;
     modules: Array<string> = [];
 
-    constructor(private _activatedRoute: ActivatedRoute) {}
+    constructor(
+        private _activatedRoute: ActivatedRoute,
+        private _preloadStrategy: SelectivePreloadingStrategyService
+    ) {
+        this.modules = this._preloadStrategy.preloadedModules;
+    }
 
     ngOnInit(): void {
         this.sessionId$ = this._activatedRoute.queryParamMap.pipe(

@@ -24,6 +24,8 @@ export class SkillListComponent implements OnInit {
             console.log(
                 this._router.getCurrentNavigation()?.extras.state!.selectedId
             );
+            // this.selectedId =
+            //     this._router.getCurrentNavigation()?.extras.state!.selectedId;
         }
     }
 
